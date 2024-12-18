@@ -16,22 +16,35 @@
             <p>Enter a URL of an article</p>
             <section>
        
-                <form id="urlForm">
-                    <input id="url" type="text" name="url"  placeholder="Enter URL here" required>
-                    <button type="submit" id="btn-sub">Submit</button>
+                <form id="myform" onsubmit="return Client.handleSubmit(event)">
+                    <input id="urlvalue" type="text" name="urlvalue"  placeholder="Enter URL here" required>
+                    <input type="submit" id="btn-sub" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)"/>
                 </form>
             </section>
     
             <section>
-                <strong>Form Results:</strong>
-                <div id="polarity"></div>
-                <div id="agreement"></div>
-                <div id="subjectivity"></div>
-                <div id="confidence"></div>
+                <strong>Output:</strong>
+                <strong>Polarity:</strong>
+                <div id="result_polarity"></div>
+                <strong>Agreement:</strong>
+                <div id="agree"></div>
+                <strong>Subjectivity Confidence:</strong>
+                <div id="subjectivity_conf"></div>
+                <strong>Polarity Confidence:</strong>
+                <div id="pol_confidence"></div>
+                <strong>Irony:</strong>
                 <div id="irony"></div>
             </section>
         </main>
-       
+        <script>
+           
+            if ('serviceWorker' in navigator) {
+                
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js');
+                });
+            }
+        </script>
     </body>
 
 

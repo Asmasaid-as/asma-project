@@ -1,0 +1,33 @@
+# Natural Language Processing Web Application
+
+## Description
+
+This web application allows users to perform Natural Language Processing (NLP) on articles or blog posts found on external websites. By entering the URL of an article, users can obtain sentiment analysis based on the content of the article. The application integrates with the [MeaningCloud API](https://www.meaningcloud.com/products/sentiment-analysis) to provide detailed insights into the sentiment of the text. This functionality helps users understand the tone and emotions conveyed in the article.
+
+## Technologies and Tools Used
+
+- **HTML**: Structure and content of the web page.
+- **CSS**: Styling for the application.
+- **JavaScript**: Client-side functionality for interacting with the user and the MeaningCloud API.
+- **Node.js**: Backend environment for running JavaScript on the server side.
+- **Express**: Web framework for building the backend server.
+- **Webpack**: Module bundler for handling assets and compiling code.
+- **MeaningCloud API**: API used to analyze the sentiment of article content.
+- **Jest**: Testing framework for unit and integration testing.
+- **Workbox**: Library for managing service workers and caching to make the app work offline.
+
+## Project Files
+
+- **index.html**: Main HTML file for the user interface.
+- **styles.scss**: SCSS file for styling the application.
+- **index.js**: Main JavaScript file that handles user interactions, sends requests to the backend, and displays results.
+- **index.js**: Node.js/Express server file that handles API requests from the frontend.
+
+
+## Installation
+
+- npm install
+- npm run build-dev  [development env]
+- npm run build-prod [production env]
+- npm start
+- npm run test [for jest tests]

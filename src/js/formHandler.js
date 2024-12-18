@@ -1,12 +1,11 @@
 import { validateURL } from "./urlChecker";
 
-const form = document.getElementById('urlForm');
-form.addEventListener('submit', handleSubmit);
+
 
 function handleSubmit(event) {
 
     event.preventDefault(); 
-    let urlQuery = document.getElementById('url').value
+    let urlQuery = document.getElementById('urlvalue').value
     console.log("Submitted URL:", urlQuery);
     if(validateURL(urlQuery))
     {
@@ -15,10 +14,10 @@ function handleSubmit(event) {
         .then(function(res) {
             if (res.error) {
              
-                document.getElementById('polarity').innerHTML = 'Error: ' + res.error.message;
-                document.getElementById("agreement").innerHTML = 'Error: ' + res.error.message;
-                document.getElementById("subjectivity").innerHTML = 'Error: ' + res.error.message;
-                document.getElementById("confidence").innerHTML = 'Error: ' + res.error.message;
+                document.getElementById('result_polarity').innerHTML = 'Error: ' + res.error.message;
+                document.getElementById("agree").innerHTML = 'Error: ' + res.error.message;
+                document.getElementById("subjectivity_conf").innerHTML = 'Error: ' + res.error.message;
+                document.getElementById("pol_confidence").innerHTML = 'Error: ' + res.error.message;
                 document.getElementById("irony").innerHTML = 'Error: ' + res.error.message;
             } else {
                 
@@ -28,19 +27,19 @@ function handleSubmit(event) {
 
                     if (statusCode == 100)
                     {
-                        document.getElementById('polarity').innerHTML = statusMessage;
-                        document.getElementById("agreement").innerHTML = statusMessage;
-                        document.getElementById("subjectivity").innerHTML = statusMessage;
-                        document.getElementById("confidence").innerHTML = statusMessage;
+                        document.getElementById('result_polarity').innerHTML = statusMessage;
+                        document.getElementById("agree").innerHTML = statusMessage;
+                        document.getElementById("subjectivity_conf").innerHTML = statusMessage;
+                        document.getElementById("pol_confidence").innerHTML = statusMessage;
                         document.getElementById("irony").innerHTML = statusMessage;
                     }
                     else
                     {
-                        document.getElementById('polarity').innerHTML = 'Polarity: ' + polChecker(res.score_tag);
-                        document.getElementById("agreement").innerHTML = `Agreement: ${res.agreement}`;
-                        document.getElementById("subjectivity").innerHTML = `Subjectivity: ${res.subjectivity}`;
-                        document.getElementById("confidence").innerHTML = `Confidence: ${res.confidence}`;
-                        document.getElementById("irony").innerHTML = `Irony: ${res.irony}`;
+                        document.getElementById('result_polarity').innerHTML = '' + polChecker(res.score_tag);
+                        document.getElementById("agree").innerHTML = ` ${res.agreement}`;
+                        document.getElementById("subjectivity_conf").innerHTML = ` ${res.subjectivity}`;
+                        document.getElementById("pol_confidence").innerHTML = ` ${res.confidence}`;
+                        document.getElementById("irony").innerHTML = `${res.irony}`;
                     }
                 }
  
@@ -77,6 +76,12 @@ const postDataToServer = async (url = "", dataToBeSent = {}) => {
 
 const polChecker = (score) => {
     let display;
+
+    if (!score || typeof score !== 'string') {
+        return 'INVALID SCORE';
+    }
+
+    if (score )
     switch (score){
         case 'P+':
             display = 'strong positive';
@@ -95,6 +100,8 @@ const polChecker = (score) => {
             break;
         case 'NONE':
             display = 'no sentiment';
+        default:
+            return 'UNKNOWN SCORE';
     }
     return display.toUpperCase();
 }

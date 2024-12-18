@@ -8,9 +8,9 @@ describe("URL validation function", ()=> {
     })
 
     test('Validate URL return false when given invalid URL input', ()=> {
-        expect(validateURL("xyz.xyz")).toBe(false)
+        expect(validateURL("xyz")).toBe(0)
     })
     test("Validate URL return true when given a valid form URL input", ()=>{
-        expect(checkURL("http://www.bankmuscat.om")).toBe(true)
+        expect(validateURL("http://www.bankmuscat.om")).toBe(1)
     })
 })

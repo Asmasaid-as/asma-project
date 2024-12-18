@@ -27,6 +27,11 @@ app.get('/', function (req, res) {
     
 });
 
+app.get('/test', function (req, res) {
+    res.status(200).send('OK');
+     
+ });
+
 app.post('/api', async function(req, res) {
     const url = req.body.url;
     console.log('URL received:', url);
@@ -50,3 +55,5 @@ app.post('/api', async function(req, res) {
 app.listen(3000, function () {
     console.log('App Running on Port 3000');
 });
+
+module.exports = app;

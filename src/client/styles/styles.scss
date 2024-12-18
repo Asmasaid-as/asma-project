@@ -125,7 +125,7 @@ button {
   }
 
   &:active {
-      background-color: darken($primary-color, 10%); 
+      background-color: $primary-color; 
       transform: scale(0.98); 
   }
 
